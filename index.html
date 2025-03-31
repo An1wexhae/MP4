@@ -73,22 +73,22 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('popup').style.display = 'block';
         });
-        
+
         function joinTelegram() {
             window.location.href = "https://t.me/aniweshstorage";
         }
-        
+
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
-            document.getElementById('video').style.display = 'block';
-            playVideo();
+            playVideo();  // Ensure video starts when popup closes
         }
-        
+
         function playVideo() {
             const video = document.getElementById('video');
-            const videoUrl = "https://imagekit.io/tools/asset-public-link?detail=%7B%22name%22%3A%22Lll.mp4%22%2C%22type%22%3A%22video%2Fmp4%22%2C%22signedurl_expire%22%3A%222028-03-30T08%3A55%3A39.583Z%22%2C%22signedUrl%22%3A%22https%3A%2F%2Fmedia-hosting.imagekit.io%2F5f3174c5fbba4885%2FLll.mp4%3FExpires%3D1838019340%26Key-Pair-Id%3DK2ZIVPTIP2VGHC%26Signature%3DtVIVQ5WsfvbOGxmlKVHYTV2IN0-fkhoQ4mqA7DiByjO~20rABrt43BdwXgxEbmCnWf~Kvx3KhlmZQPqnehLxWN9mIbDqLQ~U37uJ9jTV9s7eJY44Tzm~cYNLjAIZAKY64ZjLrjy9OQO4c1OHx8JERoogMpvAgvhgraiZFcHhRcifjDvvFuxswG2pBkpsZOJ7YT~Hr9FFgIjxyvxFVZPZF2BsznPNFtFIK6ovIAHGz3bu1ZEMWv9A4rKkjy6DpB3V70YLmf0rc8hjBLu0UPe6QzQI-BvjwT274a275KMyQhb8SsmjWfZWh44UmpVbt1Hu5We4kHoZxTiien3qjb37Wg__%22%7D";
+            const videoUrl = "https://media-hosting.imagekit.io/c379a7d41a414703/Lll.mp4?Expires=1838020531&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=yncWkGE92cEuOzkkZR-lpcJN5Ys~98pjIe38gO9c4cdsqirjjYza7vdOwv89WhzxsPCW0bHlmxuxpw4pN67~RuHf0tDO64Skz6rQK5ePuMtUiY8VxGjBn7K7fCiR43YXldLS~HHyergTyLVRaKqI0mhwdA0RL7fzmwGX8AmjHnj-uLgzAOiGi~xM6-vkRIrnhmK5t1QlFXcKBb7LVtjSZLPaaqX4I0LW~BbtV2Z6Jzw0NYqqdukxhR-RSpHbKxkK~rXmv3YEZrjqQ5z01oFl3TC7yUhOVAB4ZCJlGjBjN1~4aPbAcG9095Og7GGU2608F1aQnd2asCZnoHB3FceLRg__";
 
             video.src = videoUrl;
+            video.style.display = 'block';
             video.play();
         }
     </script>
