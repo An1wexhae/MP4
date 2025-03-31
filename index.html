@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniwesh Live Link</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background: url('https://wallpapercave.com/wp/wp8946121.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            color: cyan;
+            text-shadow: 2px 2px 5px black;
+        }
+        video {
+            width: 80%;
+            max-width: 800px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background: black;
+            display: none;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+        }
+        .popup button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .join-button {
+            background: #0088cc;
+            color: white;
+            border-radius: 5px;
+        }
+        .cancel-button {
+            background: #cc0000;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Aniwesh Live Link</h1>
+    <div id="popup" class="popup">
+        <p>Join our Telegram Channel for updates!</p>
+        <button class="join-button" onclick="joinTelegram()">Join</button>
+        <button class="cancel-button" onclick="closePopup()">Cancel</button>
+    </div>
+    <video id="video" controls loop></video>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('popup').style.display = 'block';
+        });
+        
+        function joinTelegram() {
+            window.location.href = "https://t.me/aniweshstorage";
+        }
+        
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('video').style.display = 'block';
+            playVideo();
+        }
+        
+        function playVideo() {
+            const video = document.getElementById('video');
+            const videoUrl = "https://media-hosting.imagekit.io/f28f7aa518364aba/-1002497072428-0-1.mp4?Expires=1838016066&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=fVciR5Wsz6MQu-ZYXb~wWPTjl~cwF4YJHuT4e6ccPlEhnXX5kzoagoOduLMYDeEnQaTeS5zEFKB2EYO2fmzGhe6uiPGNtbJOgpnEdyvTmRI8RJapsKWJIzllInQyRzknh4~jZ-lILNfwmVqtBvpcJRZuGpJhGIzz24qJ8wTDq8sMZuUbXAhluT8HM7nK4mz6HTTMToixDJWypr72reYBp~IIucTkJyYdFKyhnGIvcix9fs0-lnYxo4Kr-R0VVwJuGLqPc-8ENB8Yf5SyBXOGOvunFzDhLdPzjSdsYkwpf8CpuRc0psnhbZyQbqItfMquQDiJARdBQnjiReq1DoWTOw__";
+
+            video.src = videoUrl;
+            video.play();
+        }
+    </script>
+</body>
+</html>
