@@ -1,56 +1,51 @@
-import React, { useRef, useState, useEffect } from "react";
-import Hls from "hls.js";
-
-const MediaPlayer = () => {
-  const videoRef = useRef(null);
-  const [streamUrl, setStreamUrl] = useState("");
-  const [currentUrl, setCurrentUrl] = useState("");
-
-  useEffect(() => {
-    if (currentUrl && videoRef.current) {
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(currentUrl);
-        hls.attachMedia(videoRef.current);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          videoRef.current.play();
-        });
-
-        return () => hls.destroy();
-      } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
-        videoRef.current.src = currentUrl;
-        videoRef.current.addEventListener("loadedmetadata", () => {
-          videoRef.current.play();
-        });
-      }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Stream Player</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
-  }, [currentUrl]);
+    video {
+      width: 90%;
+      max-width: 1080px;
+      border-radius: 8px;
+      border: 2px solid white;
+    }
+  </style>
+</head>
+<body>
+  <video id="video" controls autoplay></video>
 
-  return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4">
-      <h1 className="text-white text-3xl mb-6">🎥 M3U8 Media Player</h1>
-      <input
-        type="text"
-        placeholder="https://dai.google.com/ssai/event/biQJgf06SJCitj-nd502ow/master.m3u8"
-        value={streamUrl}
-        onChange={(e) => setStreamUrl(e.target.value)}
-        className="w-full max-w-md p-2 rounded mb-4 border border-gray-300"
-      />
-      <button
-        onClick={() => setCurrentUrl(streamUrl)}
-        className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded"
-      >
-        ▶ Play
-      </button>
-      <div className="mt-6 w-full max-w-4xl">
-        <video
-          ref={videoRef}
-          controls
-          className="w-full rounded-lg shadow-lg"
-        />
-      </div>
-    </div>
-  );
-};
+  <!-- Load HLS.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const video = document.getElementById('video');
+    const videoSrc = 'https://dai.google.com/ssai/event/biQJgf06SJCitj-nd502ow/master.m3u8'; // 🔁 Replace this with your .m3u8 link
 
-export default MediaPlayer;
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', function () {
+        video.play();
+      });
+    } else {
+      alert('Your browser does not support HLS streaming.');
+    }
+  </script>
+</body>
+</html>
